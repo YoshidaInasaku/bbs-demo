@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login / BBSdemo</title>
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+    </head>
+    <body>
+        <div class="main">
+            <h2>Please Sign in</h2>
+            <div class="error" th:if="${param.error}">Bad Credential</div>
+
+            <form method="post" th:action="@{/login}">
+                <input type="text" name="username" placeholder="UserId" />
+                <input type="password" name="password" placeholder="Password" />
+                <button type="submit">Sign in</button>
+            </form>
+        </div>
+    </body>
+</html>
