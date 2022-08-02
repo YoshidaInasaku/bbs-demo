@@ -7,8 +7,7 @@ CREATE TABLE users(
     user_id VARCHAR(15) NOT NULL UNIQUE,
     user_name VARCHAR(24) NOT NULL,
     password VARCHAR(128) NOT NULL,
-    email VARCHAR(64) NOT NULL,
-    existence BOOLEAN NOT NULL
+    email VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE roles(

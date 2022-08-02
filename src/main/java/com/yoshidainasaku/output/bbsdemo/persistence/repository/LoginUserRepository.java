@@ -18,7 +18,6 @@ public class LoginUserRepository {
                 users.user_name,
                 users.password,
                 users.email,
-                users.existence,
                 roles.role_name
             FROM
                 users
@@ -32,8 +31,6 @@ public class LoginUserRepository {
                 roles.id = user_role.role_id
             WHERE
                 users.user_id = :userId
-            AND
-                users.existence = true
             """;
 
     private static final ResultSetExtractor<LoginUser> LOGIN_USER_EXTRACTOR = (rs) -> {
@@ -41,7 +38,6 @@ public class LoginUserRepository {
         String userName = null;
         String password = null;
         String email = null;
-        Boolean existence = null;
         List<String> roleList = new ArrayList<>();
 
         while (rs.next()) {
@@ -50,11 +46,10 @@ public class LoginUserRepository {
                 userName = rs.getString("user_name");
                 password = rs.getString("password");
                 email = rs.getString("email");
-                existence = rs.getBoolean("existence");
             }
             roleList.add(rs.getString("role_name"));
         }
-        return new LoginUser(userId, userName, password, email, existence, roleList);
+        return new LoginUser(userId, userName, password, email, roleList);
     };
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
