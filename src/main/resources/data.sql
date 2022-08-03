@@ -11,3 +11,6 @@ INSERT INTO roles(id, role_name) VALUES(2, 'ROLE_ADMIN');
 INSERT INTO user_role(user_id, role_id) VALUES(1, 1);
 INSERT INTO user_role(user_id, role_id) VALUES(2, 1);
 INSERT INTO user_role(user_id, role_id) VALUES(2, 2);
+
+INSERT INTO contents(text_content, user_id) VALUES('こんにちは', 'tanaka');
+INSERT INTO contents(text_content, user_id) VALUES('接続確認', 'morita');
