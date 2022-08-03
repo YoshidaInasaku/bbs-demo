@@ -3,8 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Home / BBSdemo</title>
+        <link rel="stylesheet" th:href="@{/css/home.css}">
     </head>
     <body>
         <h2>誰でも見れるページ</h2>
+        <ul th:each="content : ${contentList}">
+            <li th:text="${content.userName}"></li>
+            <li th:text="${content.userId}"></li>
+            <li th:text="${content.updatedAt}"></li>
+            <li th:text="${content.textContent}"></li>
+            <hr>
+        </ul>
     </body>
 </html>
