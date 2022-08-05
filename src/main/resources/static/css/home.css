@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+.home {
+    flex: 1;
+    display: flex;
+}
+
+.left-sidebar {
+    width: 24%;
+    margin-left: 15px;
+}
+
+.left-sidebar h1 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 37px;
+}
+
+.left-sidebar div {
+    font-size:22px;
+    margin-bottom: 21px;
+    margin-left: 12px;
+}
+
+.center {
+    width: 58%;
+}
+
+.center form {
+    margin-top: 20px;
+    display: grid;
+    row-gap: 5px;
+    justify-content: center;
+}
+
+.center form textarea {
+    width: 580px;
+    height: 75px;
+}
+
+.center form textarea::placeholder {
+    font-size: 20px;
+}
+
+.center form button {
+    width: 56px;
+    height: 28px;
+    justify-self: end;
+    font-size: 17px;
+}
+
+.content-header {
+    display: flex;
+    margin-left: 11px;
+    height: 30px;
+}
+
+.content-header .user-name {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.content-header .user-id {
+    font-size: 19px;
+    margin-right: 10px;
+    align-self: end;
+    color: grey;
+}
+
+.content-header .concatenate {
+    color: grey;
+    font-size: 19px;
+    align-self: end;
+}
+
+.content-header .update-time {
+    font-size: 19px;
+    margin-left: 20px;
+    align-self: end;
+    color: grey;
+}
+
+.content-text {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-left: 11px;
+}
+
+.right-sidebar {
+    width: 18%;
+    display: flex;
+    justify-content: center;
+}
+
+.right-sidebar form input {
+    margin-top: 7px;
+    width: 170px;
+    height: 27px;
+}
+
+.right-sidebar form input::placeholder {
+    font-size: 18px;
+}
+
+.footer {
+    background-color: grey;
+}

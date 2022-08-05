@@ -6,13 +6,42 @@
         <link rel="stylesheet" th:href="@{/css/home.css}">
     </head>
     <body>
-        <h2>誰でも見れるページ</h2>
-        <ul th:each="content : ${contentList}">
-            <li th:text="${content.userName}"></li>
-            <li th:text="${content.userId}"></li>
-            <li th:text="${content.updatedAt}"></li>
-            <li th:text="${content.textContent}"></li>
-            <hr>
-        </ul>
+        <div class="home">
+            <div class=left-sidebar>
+                <h1>BBSdemo</h1>
+                <div>🏠 Home</div>
+                <div>👶 Profile</div>
+                <div>🛑 Logout</div>
+                <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
+            </div>
+
+            <div class="center">
+                <form method="post" action="/add">
+                    <textarea name="text_content" placeholder="What's happening?"></textarea>
+                    <button type="submit">Post</button>
+                </form>
+
+                <div th:each="content : ${contentList}">
+                    <hr>
+                    <div class="content-header">
+                        <div class="user-name" th:text="${content.userName}"></div>
+                        <div class="user-id" th:text="|@${content.userId}|"></div>
+                        <div class="concatenate">-</div>
+                        <div class="update-time" th:text="${content.updatedAt}"></div>
+                    </div>
+                    <div class="content-text" th:text="${content.textContent}"></div>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <form method="post" action="/search">
+                    <input type="text" name="search_word" placeholder="🔍 Search" />
+                </form>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>footer</div>
+        </div>
     </body>
 </html>
