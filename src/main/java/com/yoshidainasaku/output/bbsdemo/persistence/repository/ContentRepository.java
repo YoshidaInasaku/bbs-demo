@@ -3,6 +3,7 @@ package com.yoshidainasaku.output.bbsdemo.persistence.repository;
 import com.yoshidainasaku.output.bbsdemo.persistence.entity.Content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 public class ContentRepository {
-    private final static String SQL_FIND_ALL_CONTENTS = """
+    private static final String SQL_FIND_ALL_CONTENTS = """
             SELECT
                 contents.text_content,
                 contents.updated_at,
@@ -24,6 +25,11 @@ public class ContentRepository {
                 users.user_id = contents.user_id
             """;
 
+    private static final String SQL_ADD = """
+            INSERT INTO contents(text_content, user_id)
+                VALUES(:text_content, :user_id)
+            """;
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
@@ -34,5 +40,12 @@ public class ContentRepository {
     public List<Content> findAll() {
         List<Content> contentList = namedParameterJdbcTemplate.query(SQL_FIND_ALL_CONTENTS, new DataClassRowMapper<>(Content.class));
         return contentList;
+    }
+
+    public void add(String textContent, String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("text_content", textContent)
+                .addValue("user_id", userId);
+        namedParameterJdbcTemplate.update(SQL_ADD, params);
     }
 }
