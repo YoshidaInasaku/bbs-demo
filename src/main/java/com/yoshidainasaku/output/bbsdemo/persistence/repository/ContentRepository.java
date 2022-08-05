@@ -23,6 +23,7 @@ public class ContentRepository {
                 users
             ON
                 users.user_id = contents.user_id
+            ORDER BY updated_at DESC
             """;
 
     private static final String SQL_ADD = """
