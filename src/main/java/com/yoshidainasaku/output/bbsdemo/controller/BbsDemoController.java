@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -38,8 +40,12 @@ public class BbsDemoController {
                       Authentication authentication) {
         LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
         String userId = loginUserDetails.getUsername();
-        contentRepository.add(textContent, userId);
 
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH時mm分");
+        String updatedAt = now.format(formatter);
+
+        contentRepository.add(textContent, updatedAt, userId);
         return "redirect:/home";
     }
 }

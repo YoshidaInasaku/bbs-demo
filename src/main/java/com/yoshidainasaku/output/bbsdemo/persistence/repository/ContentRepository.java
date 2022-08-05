@@ -13,6 +13,7 @@ import java.util.List;
 public class ContentRepository {
     private static final String SQL_FIND_ALL_CONTENTS = """
             SELECT
+                contents.id,
                 contents.text_content,
                 contents.updated_at,
                 contents.user_id,
@@ -23,12 +24,12 @@ public class ContentRepository {
                 users
             ON
                 users.user_id = contents.user_id
-            ORDER BY updated_at DESC
+            ORDER BY contents.id DESC
             """;
 
     private static final String SQL_ADD = """
-            INSERT INTO contents(text_content, user_id)
-                VALUES(:text_content, :user_id)
+            INSERT INTO contents(text_content, updated_at, user_id)
+                VALUES(:text_content, :updated_at, :user_id)
             """;
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -43,9 +44,10 @@ public class ContentRepository {
         return contentList;
     }
 
-    public void add(String textContent, String userId) {
+    public void add(String textContent, String updatedAt, String userId) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("text_content", textContent)
+                .addValue("updated_at", updatedAt)
                 .addValue("user_id", userId);
         namedParameterJdbcTemplate.update(SQL_ADD, params);
     }
