@@ -20,7 +20,7 @@ public class SecurityConfig {
                         .failureUrl("/login?error")
                         .permitAll())
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login"))
+                        .logoutSuccessUrl("/login?logout"))
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .antMatchers("/h2-console/**").permitAll()  // h2コンソールにアクセス可能にする
