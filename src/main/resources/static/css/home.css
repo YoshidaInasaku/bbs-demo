@@ -40,6 +40,7 @@ body {
 .center form textarea {
     width: 580px;
     height: 75px;
+    font-size: 20px;
 }
 
 .center form textarea::placeholder {
@@ -88,6 +89,7 @@ body {
     font-size: 18px;
     margin-top: 5px;
     margin-left: 11px;
+    white-space: pre-wrap;
 }
 
 .right-sidebar {
