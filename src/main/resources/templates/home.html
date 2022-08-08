@@ -11,7 +11,7 @@
                 <h1><a th:href="@{/home}">BBSdemo</a></h1>
                 <div><a th:href="@{/home}">🏠 Home</a></div>
                 <div>👶 Profile</div>
-                <div>🛑 Logout</div>
+                <div><a th:href="@{/logout}">🛑 Logout</a></div>
                 <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
             </div>
 
