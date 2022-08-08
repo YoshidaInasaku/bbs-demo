@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -24,7 +28,7 @@
         height: 30px;
         padding: 0 0 0 10px;
         border-radius: 10px 10px 10px 10px;
-        background-color: indian-red;
+        background-color: green;
         color: white;
 }
 

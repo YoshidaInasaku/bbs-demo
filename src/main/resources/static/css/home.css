@@ -10,6 +10,7 @@ a:visited {
 
 
 body {
+    margin: 0;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
@@ -119,6 +120,6 @@ body {
     font-size: 18px;
 }
 
-.footer {
+footer {
     background-color: grey;
 }
