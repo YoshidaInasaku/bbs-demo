@@ -10,7 +10,7 @@
             <div class=left-sidebar>
                 <h1><a th:href="@{/home}">BBSdemo</a></h1>
                 <div><a th:href="@{/home}">🏠 Home</a></div>
-                <div>👶 Profile</div>
+                <div><a th:href="@{/profile}">👶 Profile</a></div>
                 <div><a th:href="@{/logout}">🛑 Logout</a></div>
                 <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
             </div>
@@ -40,8 +40,8 @@
             </div>
         </div>
 
-        <div class="footer">
+        <footer>
             <div>footer</div>
-        </div>
+        </footer>
     </body>
 </html>
