@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,7 +31,11 @@ public class BbsDemoController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
+    public String home(Authentication authentication, Model model) {
+        LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
+        String userId = loginUserDetails.getUsername();
+        model.addAttribute("userId", userId);
+
         List<Content> contentList = contentRepository.findAll();
         model.addAttribute("contentList", contentList);
         return "home";
@@ -47,5 +52,10 @@ public class BbsDemoController {
 
         contentRepository.add(textContent, updatedAt, userId);
         return "redirect:/home";
+    }
+
+    @GetMapping("/{user_id}")
+    public String profile(@PathVariable("user_id") String userId) {
+        return "/profile";
     }
 }
