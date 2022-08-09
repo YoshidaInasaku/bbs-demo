@@ -1,0 +1,135 @@
+/** 共通処理 */
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+
+body {
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+.home {
+    flex: 1;
+    display: flex;
+}
+
+.left-sidebar {
+    width: 24%;
+    margin-left: 15px;
+}
+
+.left-sidebar h1 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 37px;
+}
+
+.left-sidebar div {
+    font-size:22px;
+    margin-bottom: 21px;
+    margin-left: 12px;
+}
+
+/** メインを記載する */
+.center {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+}
+
+.center .user-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.center .user-profile .back-arrow {
+    margin-top: 20px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.center .user-profile .user-name {
+    align-self: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.center .user-profile .user-id {
+    align-self: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: grey;
+}
+
+.center .user-profile .post-count {
+    align-self: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.center .post-list .content-header {
+    display: flex;
+    margin-left: 11px;
+    height: 30px;
+}
+
+.center .post-list .user-name {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.center .post-list .user-id {
+    font-size: 19px;
+    margin-right: 10px;
+    align-self: end;
+    color: gray;
+}
+
+.center .post-list .concatenate {
+    color: gray;
+    font-size: 19px;
+    align-self: end;
+}
+
+.center .post-list .update-time {
+    font-size: 19px;
+    margin-left: 20px;
+    align-self: end;
+    color: gray;
+}
+
+.center .post-list .content-text {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-left: 11px;
+    white-space: pre-wrap;
+}
+
+.right-sidebar {
+    width: 18%;
+    display: flex;
+    justify-content: center;
+}
+
+.right-sidebar form input {
+    margin-top: 7px;
+    width: 170px;
+    height: 27px;
+}
+
+.right-sidebar form input::placeholder {
+    font-size: 18px;
+}
+
+footer {
+    background-color: grey;
+}

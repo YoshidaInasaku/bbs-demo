@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" th:href="@{/css/profile.css}">
+    </head>
+    <body>
+        <div class="home">
+            <div class=left-sidebar>
+                <h1><a th:href="@{/home}">BBSdemo</a></h1>
+                <div><a th:href="@{/home}">🏠 Home</a></div>
+                <div><a th:href="@{/profile}"> 👶 Profile</a></div>
+                <div><a th:href="@{/logout}">🛑 Logout</a></div>
+                <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
+            </div>
+
+            <div class="center">
+                <div class="user-profile">
+                    <div class="back-arrow">⬅︎</div>
+                    <div class="user-name">UserName</div>
+                    <div class="user-id">UserId</div>
+                    <div class="post-count">Post Count</div>
+                </div>
+
+                <hr>
+                <div class="post-list">
+                    <div class="content-header">
+                        <div class="user-name">UserName</div>
+                        <div class="user-id">UserId</div>
+                        <div class="concatenate">-</div>
+                        <div class="update-time">2022年8月1日 17時4分</div>
+                    </div>
+                    <div class="content-text">こんにちは</div>
+                </div>
+            </div>
+
+            <div class="right-sidebar">
+                <form method="post" action="/search">
+                    <input type="text" name="search_word" placeholder="🔍 Search" />
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            footer
+        </footer>
+    </body>
+</html>
