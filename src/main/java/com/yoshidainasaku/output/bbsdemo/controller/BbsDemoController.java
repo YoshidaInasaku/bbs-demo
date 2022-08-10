@@ -5,10 +5,10 @@ import com.yoshidainasaku.output.bbsdemo.persistence.repository.ContentRepositor
 import com.yoshidainasaku.output.bbsdemo.service.LoginUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,8 +31,8 @@ public class BbsDemoController {
     }
 
     @GetMapping("/home")
-    public String home(Authentication authentication, Model model) {
-        LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
+    public String home(@AuthenticationPrincipal LoginUserDetails loginUserDetails,
+                       Model model) {
         String userId = loginUserDetails.getUsername();
         model.addAttribute("userId", userId);
 
@@ -54,8 +54,18 @@ public class BbsDemoController {
         return "redirect:/home";
     }
 
-    @GetMapping("/{user_id}")
-    public String profile(@PathVariable("user_id") String userId) {
+    @GetMapping("/profile")
+    public String profile(@AuthenticationPrincipal LoginUserDetails loginUserDetails,
+                          Model model) {
+        try {
+            model.addAttribute("user", loginUserDetails.getLoginUser());
+            // データ件数を取得してmodelで渡す
+            // userが投稿した内容のみ取得してmodelで渡す
+        }
+        catch (NullPointerException e) {
+            model.addAttribute("notLogIn", false);
+            return "redirect:/login";
+        }
         return "/profile";
     }
 }

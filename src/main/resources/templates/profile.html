@@ -10,12 +10,7 @@
             <div class=left-sidebar>
                 <h1><a th:href="@{/home}">BBSdemo</a></h1>
                 <div><a th:href="@{/home}">🏠 Home</a></div>
-                <div>
-                    <form method="get" th:action="@{/__${userId}__}">
-                        <input type="hidden" name="user_id" value="${userId}">
-                        <a th:href="@{/__${userId}__}">👶 Profile</a>
-                    </form>
-                </div>
+                <div><a th:href="@{/profile}">👶 Profile</a></div>
                 <div><a th:href="@{/logout}">🛑 Logout</a></div>
                 <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
             </div>
@@ -23,8 +18,8 @@
             <div class="center">
                 <div class="user-profile">
                     <div class="back-arrow"><a th:href="@{/home}">⬅︎</a></div>
-                    <div class="user-name">UserName</div>
-                    <div class="user-id">UserId</div>
+                    <div class="user-name" th:text="${user.userName}">UserName</div>
+                    <div class="user-id" th:text="|@${user.userId}|">UserId</div>
                     <div class="post-count">Post Count</div>
                 </div>
 

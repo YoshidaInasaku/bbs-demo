@@ -10,6 +10,7 @@
             <h2>Please Sign in</h2>
             <div class="error" th:if="${param.error}">Bad Credential</div>
             <div class="logout" th:if="${param.logout}">Successfully Logout</div>
+            <div class="not-login" th:if="${notLogIn}">Login again</div>
 
             <form method="post" th:action="@{/login}">
                 <input type="text" name="username" placeholder="UserId" />
