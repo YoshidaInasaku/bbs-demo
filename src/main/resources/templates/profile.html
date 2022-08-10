@@ -23,15 +23,15 @@
                     <div class="post-count" th:text="|${count} Posts|">Post Count</div>
                 </div>
 
-                <hr>
-                <div class="post-list">
+                <div class="post-list" th:each="content : ${contentList}">
+                    <hr>
                     <div class="content-header">
-                        <div class="user-name">UserName</div>
-                        <div class="user-id">UserId</div>
+                        <div class="user-name" th:text="${content.userName}">UserName</div>
+                        <div class="user-id" th:text="|@${content.userId}|">UserId</div>
                         <div class="concatenate">-</div>
-                        <div class="update-time">2022年8月1日 17時4分</div>
+                        <div class="update-time" th:text="${content.updatedAt}">2022年8月1日 17時4分</div>
                     </div>
-                    <div class="content-text">こんにちは</div>
+                    <div class="content-text" th:text="${content.textContent}">こんにちは</div>
                 </div>
             </div>
 
