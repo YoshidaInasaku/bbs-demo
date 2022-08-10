@@ -41,6 +41,7 @@ public class ContentRepository {
                 users.user_id = contents.user_id
             WHERE
                 contents.user_id = :user_id
+            ORDER BY contents.id DESC
             """;
 
     private static final String SQL_ADD = """
