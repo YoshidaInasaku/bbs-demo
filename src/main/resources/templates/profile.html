@@ -20,7 +20,7 @@
                     <div class="back-arrow"><a th:href="@{/home}">⬅︎</a></div>
                     <div class="user-name" th:text="${user.userName}">UserName</div>
                     <div class="user-id" th:text="|@${user.userId}|">UserId</div>
-                    <div class="post-count">Post Count</div>
+                    <div class="post-count" th:text="|${count} Posts|">Post Count</div>
                 </div>
 
                 <hr>

@@ -59,13 +59,18 @@ public class BbsDemoController {
                           Model model) {
         try {
             model.addAttribute("user", loginUserDetails.getLoginUser());
-            // データ件数を取得してmodelで渡す
-            // userが投稿した内容のみ取得してmodelで渡す
+
+            String userId = loginUserDetails.getUsername();
+            Integer count = contentRepository.countSpecificUserContents(userId);
+            model.addAttribute("count", count);
+            List<Content> contentList = contentRepository.findSpecificUserContents(userId);
+            model.addAttribute("contentList", contentList);
         }
         catch (NullPointerException e) {
             model.addAttribute("notLogIn", false);
             return "redirect:/login";
         }
+
         return "/profile";
     }
 }
