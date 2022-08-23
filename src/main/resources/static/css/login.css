@@ -13,39 +13,136 @@ body {
 }
 
 .error {
-    margin-bottom: 15px;
-    width: 200px;
-    height: 30px;
-    padding: 0 0 0 10px;
-    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    width: 220px;
+    height: 38px;
+    border-radius: 10px;
     background-color: red;
     color: white;
+    font-size: 18px;
 }
 
 .logout {
-        margin-bottom: 15px;
-        width: 200px;
-        height: 30px;
-        padding: 0 0 0 10px;
-        border-radius: 10px 10px 10px 10px;
-        background-color: green;
-        color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    width: 220px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    font-size: 18px;
 }
 
 .not-login {
-        margin-bottom: 15px;
-        width: 200px;
-        height: 30px;
-        padding: 0 0 0 10px;
-        border-radius: 10px 10px 10px 10px;
-        background-color: blue;
-        color: white;
-}
-
-form {
     display: flex;
     flex-direction: column;
-    height: 85px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    width: 220px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+}
+
+.main form {
+    display: flex;
+    flex-direction: column;
+    height: 135px;
     width: 200px;
     justify-content: space-between;
+}
+
+.main form > input {
+    width: 185px;
+    height: 30px;
+    align-self: center;
+    font-size: 18px;
+}
+
+.main form > button {
+    width: 180px;
+    height: 30px;
+    align-self: center;
+    background-color: green;
+    color: white;
+}
+
+#register-button {
+    height: 30px;
+    width: 180px;
+    background-color: midnightblue;
+    color: white;
+    margin-top: 25px;
+}
+
+/** 登録ダイアログのオーバーレイ */
+#modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
+
+/** 登録ダイアログ */
+#register-modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border: 2px double;
+    width: 500px;
+    height: 400px;
+    position: fixed;
+    top: 120px;
+    background-color: white;
+    z-index: 2;
+}
+
+#register-modal form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+#register-modal form > input {
+    width: 285px;
+    height: 30px;
+    align-self: center;
+    font-size: 18px;
+}
+
+#modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px 20px 20px;
+}
+
+.submit-button {
+    width: 100px;
+    height: 30px;
+    background-color: midnightblue;
+    color: white;
+}
+
+.reset-button {
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    color: white;
 }
