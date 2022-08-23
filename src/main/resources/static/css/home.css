@@ -11,8 +11,7 @@ a:visited {
     color: inherit;
 }
 
-
-
+/** ボディ */
 body {
     margin: 0;
     display: flex;
@@ -28,6 +27,7 @@ body {
 .left-sidebar {
     width: 24%;
     margin-left: 15px;
+    min-width: 210px;
 }
 
 .left-sidebar h1 {
@@ -44,6 +44,7 @@ body {
 
 .center {
     width: 58%;
+    min-width: 580px;
 }
 
 .center form {
@@ -68,6 +69,11 @@ body {
     height: 28px;
     justify-self: end;
     font-size: 17px;
+}
+
+.contents {
+    height: 590px;
+    overflow-y: auto;
 }
 
 .content-header {
@@ -112,6 +118,7 @@ body {
     width: 18%;
     display: flex;
     justify-content: center;
+    min-width: 200px;
 }
 
 .right-sidebar form input {

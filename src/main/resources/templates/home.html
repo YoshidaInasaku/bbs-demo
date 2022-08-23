@@ -21,15 +21,17 @@
                     <button type="submit">Post</button>
                 </form>
 
-                <div th:each="content : ${contentList}">
-                    <hr>
-                    <div class="content-header">
-                        <div class="user-name" th:text="${content.userName}"></div>
-                        <div class="user-id" th:text="|@${content.userId}|"></div>
-                        <div class="concatenate">-</div>
-                        <div class="update-time" th:text="${content.updatedAt}"></div>
+                <div class="contents">
+                    <div th:each="content : ${contentList}">
+                        <hr>
+                        <div class="content-header">
+                            <div class="user-name" th:text="${content.userName}"></div>
+                            <div class="user-id" th:text="|@${content.userId}|"></div>
+                            <div class="concatenate">-</div>
+                            <div class="update-time" th:text="${content.updatedAt}"></div>
+                        </div>
+                        <div class="content-text" th:text="${content.textContent}"></div>
                     </div>
-                    <div class="content-text" th:text="${content.textContent}"></div>
                 </div>
             </div>
 
