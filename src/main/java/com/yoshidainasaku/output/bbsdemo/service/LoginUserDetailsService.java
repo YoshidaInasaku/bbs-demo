@@ -2,6 +2,7 @@ package com.yoshidainasaku.output.bbsdemo.service;
 
 import com.yoshidainasaku.output.bbsdemo.persistence.entity.LoginUser;
 import com.yoshidainasaku.output.bbsdemo.persistence.repository.LoginUserRepository;
+import com.yoshidainasaku.output.bbsdemo.service.LoginUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,4 +1,4 @@
-package com.yoshidainasaku.output.bbsdemo.config;
+package com.yoshidainasaku.output.bbsdemo.security.config;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
