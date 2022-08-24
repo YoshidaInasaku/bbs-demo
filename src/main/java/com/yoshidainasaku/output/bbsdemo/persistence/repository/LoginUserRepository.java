@@ -24,7 +24,7 @@ public class LoginUserRepository {
             JOIN
                 user_role
             ON
-                user_role.user_id = users.id
+                user_role.user_id = users.user_id
             JOIN
                 roles
             ON

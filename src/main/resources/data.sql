@@ -8,9 +8,9 @@ INSERT INTO users(user_id, user_name, password, email)
 INSERT INTO roles(id, role_name) VALUES(1, 'ROLE_GENERAL');
 INSERT INTO roles(id, role_name) VALUES(2, 'ROLE_ADMIN');
 
-INSERT INTO user_role(user_id, role_id) VALUES(1, 1);
-INSERT INTO user_role(user_id, role_id) VALUES(2, 1);
-INSERT INTO user_role(user_id, role_id) VALUES(2, 2);
+INSERT INTO user_role(user_id, role_id) VALUES('tanaka', 1);
+INSERT INTO user_role(user_id, role_id) VALUES('morita', 1);
+INSERT INTO user_role(user_id, role_id) VALUES('morita', 2);
 
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは', '2022年8月1日 17時3分', 'tanaka');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('接続確認', '2022年8月1日 17時2分', 'morita');
