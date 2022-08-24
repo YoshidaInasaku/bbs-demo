@@ -44,7 +44,7 @@ public class ContentRepository {
             ORDER BY contents.id DESC
             """;
 
-    private static final String SQL_ADD = """
+    private static final String SQL_ADD_CONTENT = """
             INSERT INTO contents(text_content, updated_at, user_id)
                 VALUES(:text_content, :updated_at, :user_id)
             """;
@@ -74,7 +74,7 @@ public class ContentRepository {
                 .addValue("text_content", textContent)
                 .addValue("updated_at", updatedAt)
                 .addValue("user_id", userId);
-        namedParameterJdbcTemplate.update(SQL_ADD, params);
+        namedParameterJdbcTemplate.update(SQL_ADD_CONTENT, params);
     }
 
     public Integer countSpecificUserContents(String userId) {
