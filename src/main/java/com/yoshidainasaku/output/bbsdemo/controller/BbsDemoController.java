@@ -1,9 +1,12 @@
 package com.yoshidainasaku.output.bbsdemo.controller;
 
+import com.yoshidainasaku.output.bbsdemo.form.SignupForm;
 import com.yoshidainasaku.output.bbsdemo.persistence.entity.Content;
 import com.yoshidainasaku.output.bbsdemo.persistence.repository.ContentRepository;
+import com.yoshidainasaku.output.bbsdemo.persistence.repository.LoginUserRepository;
 import com.yoshidainasaku.output.bbsdemo.service.LoginUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,15 +22,36 @@ import java.util.List;
 @Controller
 public class BbsDemoController {
     private final ContentRepository contentRepository;
+    private final LoginUserRepository loginUserRepository;
 
     @Autowired
-    public BbsDemoController(ContentRepository contentRepository) {
+    public BbsDemoController(ContentRepository contentRepository,
+                             LoginUserRepository loginUserRepository) {
         this.contentRepository = contentRepository;
+        this.loginUserRepository = loginUserRepository;
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(SignupForm signupForm) {
         return "login";
+    }
+
+    @PostMapping("/signup")
+    public String signup(SignupForm signupForm, Model model) {
+        try {
+            loginUserRepository.registerUser(
+                    signupForm.getUserId(),
+                    signupForm.getUserName(),
+                    signupForm.getPassword(),
+                    signupForm.getEmail());
+            loginUserRepository.registerUserRole(signupForm.getUserId());
+        } catch (DataAccessException e) {
+            System.out.println(e);
+            model.addAttribute("signupError", "Failure");
+            return "login";
+        }
+
+        return "redirect:/login";
     }
 
     @GetMapping("/home")

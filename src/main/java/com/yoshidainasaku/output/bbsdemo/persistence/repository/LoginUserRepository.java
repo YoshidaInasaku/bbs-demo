@@ -1,13 +1,17 @@
 package com.yoshidainasaku.output.bbsdemo.persistence.repository;
 
 import com.yoshidainasaku.output.bbsdemo.persistence.entity.LoginUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -53,13 +57,44 @@ public class LoginUserRepository {
     };
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final PasswordEncoder passwordEncoder;
 
-    public LoginUserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    @Autowired
+    public LoginUserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+                               PasswordEncoder passwordEncoder) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<LoginUser> findByUserId(String userId) {
         MapSqlParameterSource param = new MapSqlParameterSource("userId", userId);
         LoginUser loginUser = namedParameterJdbcTemplate.query(SQL_FIND_BY_USER_ID, param, LOGIN_USER_EXTRACTOR);
         return Optional.ofNullable(loginUser);
-    }}
+    }
+
+    private static final String SQL_ADD_USER = """
+            INSERT INTO users(user_id, user_name, password, email)
+                VALUES(:userId, :userName, :password, :email)
+            """;
+
+    private static final String SQL_ADD_USER_ROLE = """
+            INSERT INTO user_role(user_id, role_id)
+                VALUES(:userId, 1)
+            """;
+
+    @Transactional
+    public void registerUser(String userId, String userName, String password, String email) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("userId", userId)
+                .addValue("userName", userName)
+                .addValue("password", passwordEncoder.encode(password))
+                .addValue("email", email);
+        namedParameterJdbcTemplate.update(SQL_ADD_USER, params);
+    }
+
+    @Transactional
+    public void registerUserRole(String userId) {
+        MapSqlParameterSource params = new MapSqlParameterSource("userId", userId);
+        namedParameterJdbcTemplate.update(SQL_ADD_USER_ROLE, params);
+    }
+}

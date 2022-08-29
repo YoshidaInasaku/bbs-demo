@@ -28,12 +28,14 @@
         <!-- 登録モーダル -->
         <div id="register-modal">
             <h2>Create an Account</h2>
-            <form method="post" th:action="@{/signup}">
-                <input type="hidden" name="role" value="1" />
-                <input type="text" name="user_id" placeholder="UserId        (14Characters or less)" />
-                <input type="text" name="user_name" placeholder="UserName  (24Characters or less)" />
-                <input type="password" name="password" placeholder="Password   (128Characters or less)" />
-                <input type="email" name="email" placeholder="Email" />
+            <form method="post" th:action="@{/signup}" th:object="${signupForm}">
+                <div class="error" th:if="${signupError}">
+                    <div th:text="${signupError}"></div>
+                </div>
+                <input type="text" name="user_id" th:value="${signupForm.userId}" placeholder="UserId        (14Characters or less)" />
+                <input type="text" name="user_name" th:value="${signupForm.userName}" placeholder="UserName  (24Characters or less)" />
+                <input type="password" name="password" th:value="${signupForm.password}" placeholder="Password   (128Characters or less)" />
+                <input type="email" name="email" th:value="${signupForm.email}" placeholder="Email" />
                 <div id="modal-buttons">
                     <button class="submit-button" type="submit">Create</button>
                     <button class="reset-button" type="reset" onclick="modal_close()">Cancel</button>
