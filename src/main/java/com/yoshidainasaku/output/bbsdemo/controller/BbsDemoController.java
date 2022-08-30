@@ -51,6 +51,11 @@ public class BbsDemoController {
             return "signup";
         }
 
+        if (loginUserRepository.isExist(signupForm.getUserId())) {
+            model.addAttribute("signupError", signupForm.getUserId() + " is already exists");
+            return "signup";
+        }
+
         try {
             loginUserRepository.registerUser(
                     signupForm.getUserId(),

@@ -97,4 +97,15 @@ public class LoginUserRepository {
         MapSqlParameterSource params = new MapSqlParameterSource("userId", userId);
         namedParameterJdbcTemplate.update(SQL_ADD_USER_ROLE, params);
     }
+
+    private static final String SQL_EXIST_USER = """
+            SELECT COUNT(*) FROM users 
+                WHERE user_id = :userId
+            """;
+
+    public boolean isExist(String userId) {
+        MapSqlParameterSource param = new MapSqlParameterSource("userId", userId);
+        Integer count = namedParameterJdbcTemplate.queryForObject(SQL_EXIST_USER, param, Integer.class);
+        return count > 0;
+    }
 }
