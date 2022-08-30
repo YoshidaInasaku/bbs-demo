@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Signup / BBSdemo</title>
+        <link rel="stylesheet" th:href="@{/css/signup.css}" />
+    </head>
+    <body>
+        <div class="main">
+            <div class="header">
+                <h2>Create an account</h2>
+                <div class="back-block">
+                    <div class="back-arrow"><a th:href="@{/login}">⬅</a></div>
+                    <div class="back-character">back</div>
+                </div>
+            </div>
+
+            <form class="form-field" method="post" th:action="@{/signup}" th:object="${signupForm}">
+                <div th:if="${signupError}">
+                    <div class="error" th:text="${signupError}"></div>
+                </div>
+
+                <input type="text" name="userId" th:value="${signupForm.userId}" placeholder="UserId        (14Characters or less)" />
+                <input type="text" name="userName" th:value="${signupForm.userName}" placeholder="UserName  (24Characters or less)" />
+                <input type="password" name="password" th:value="${signupForm.password}" placeholder="Password   (128Characters or less)" />
+                <input type="email" name="email" th:value="${signupForm.email}" placeholder="Email" />
+
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+/** 共通設定 */
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/** ボディ */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    align-items: center;
+}
+
+.header > h2 {
+    height: 10px;
+}
+
+.header .back-block {
+    display: flex;
+    width: 530px;
+}
+
+.header .back-arrow {
+    font-size: 23px;
+    font-weight: bold;
+    justify-self: flex-start;
+}
+
+.header .back-character {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    height: 285px;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-field > input {
+    width: 295px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.form-field > button {
+    margin-top: 10px;
+    height: 30px;
+    width: 180px;
+    background-color: midnightblue;
+    color: white;
+}

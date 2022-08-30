@@ -32,8 +32,13 @@ public class BbsDemoController {
     }
 
     @GetMapping("/login")
-    public String login(SignupForm signupForm) {
+    public String login() {
         return "login";
+    }
+
+    @GetMapping("/signup")
+    public String newSignup(SignupForm signupForm) {
+        return "signup";
     }
 
     @PostMapping("/signup")
@@ -43,14 +48,14 @@ public class BbsDemoController {
                     signupForm.getUserId(),
                     signupForm.getUserName(),
                     signupForm.getPassword(),
-                    signupForm.getEmail());
+                    signupForm.getEmail()
+            );
             loginUserRepository.registerUserRole(signupForm.getUserId());
-        } catch (DataAccessException e) {
-            System.out.println(e);
-            model.addAttribute("signupError", "Failure");
-            return "login";
+        } catch (DataAccessException error) {
+            System.out.println("エラー発生: " + error);
+            model.addAttribute("signupError", "ユーザー登録に失敗しました");
+            return "signup";
         }
-
         return "redirect:/login";
     }
 

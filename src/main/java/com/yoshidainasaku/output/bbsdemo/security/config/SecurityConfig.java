@@ -25,6 +25,7 @@ public class SecurityConfig {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .antMatchers("/h2-console/**").permitAll()  // h2コンソールにアクセス可能にする
                         .mvcMatchers("/login").permitAll()
+                        .mvcMatchers("/signup").permitAll()
                         .anyRequest().authenticated()
                 );
 
