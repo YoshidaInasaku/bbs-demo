@@ -7,8 +7,10 @@ import com.yoshidainasaku.output.bbsdemo.persistence.repository.LoginUserReposit
 import com.yoshidainasaku.output.bbsdemo.service.LoginUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,6 +50,7 @@ public class BbsDemoController {
     @PostMapping("/signup")
     public String signup(@Validated SignupForm signupForm,
                          BindingResult result,
+                         HttpServletRequest request,
                          Model model) {
         if (result.hasErrors()) {
             return "signup";
@@ -70,7 +75,18 @@ public class BbsDemoController {
             return "signup";
         }
 
-        return "redirect:/login";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken == false) {
+            SecurityContextHolder.clearContext();
+        }
+
+        try {
+            request.login(signupForm.getUserId(), signupForm.getPassword());
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/home";
     }
 
     @GetMapping("/home")
