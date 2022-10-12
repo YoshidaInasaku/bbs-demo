@@ -12,8 +12,8 @@ INSERT INTO user_role(user_id, role_id) VALUES('tanaka', 1);
 INSERT INTO user_role(user_id, role_id) VALUES('morita', 1);
 INSERT INTO user_role(user_id, role_id) VALUES('morita', 2);
 
-INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは', '2022年8月1日 17時3分', 'tanaka');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('接続確認', '2022年8月1日 17時2分', 'morita');
+INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは', '2022年8月1日 17時3分', 'tanaka');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは', '2022年8月1日 17時5分', 'morita');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('旅行に行きたい', '2022年8月1日 17時6分', 'tanaka');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('分かる', '2022年8月1日 17時7分', 'morita');
@@ -24,6 +24,5 @@ INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは'
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('こんにちは', '2022年8月1日 17時12分', 'morita');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('人がきませんね...', '2022年8月1日 17時13分', 'tanaka');
 INSERT INTO contents(text_content, updated_at, user_id) VALUES('そうですね...', '2022年8月1日 17時14分', 'morita');
-INSERT INTO contents(text_content, updated_at, user_id) VALUES('旅行に行きたい', '2022年8月1日 17時5分', 'morita');
-INSERT INTO contents(text_content, updated_at, user_id) VALUES('分かる', '2022年8月1日 17時5分', 'tanaka');
-
+INSERT INTO contents(text_content, updated_at, user_id) VALUES('旅行に行きたい', '2022年8月1日 17時15分', 'morita');
+INSERT INTO contents(text_content, updated_at, user_id) VALUES('分かる', '2022年8月1日 17時16分', 'tanaka');
