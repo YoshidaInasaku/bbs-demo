@@ -121,17 +121,6 @@ body {
     white-space: pre-wrap;
 }
 
-/** ページネーション */
-.pagination {
-    display: flex;
-    justify-content: center;
-}
-
-.page-guide {
-    margin: 60px 20px 0 10px;
-    font-size: 18px;
-}
-
 /** 右サイドバー */
 .right-sidebar {
     width: 18%;
@@ -162,7 +151,22 @@ body {
 
 /** フッター */
 footer {
+    display: flex;
+    flex-direction: column;
+}
+
+/** ページネーション */
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-guide {
+    margin: 50px 20px 20px 10px;
+    font-size: 18px;
+}
+
+.copyright {
     font-size: 15px;
-    font-weight: bold;
     align-self: center;
 }
