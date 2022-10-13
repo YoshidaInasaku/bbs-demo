@@ -34,28 +34,32 @@
                         <div class="content-text" th:text="${content.textContent}"></div>
                     </div>
                 </div>
+
+                <div class="pagination">
+                    <div class="page-guide">◀︎</div>
+                    <div class="page-guide">1</div>
+                    <div class="page-guide">︎2</div>
+                    <div class="page-guide">3︎</div>
+                    <div class="page-guide">4︎</div>
+                    <div class="page-guide">5︎</div>
+                    <div class="page-guide">▶︎︎</div>
+                </div>
             </div>
 
             <div class="right-sidebar">
                 <form method="post" action="/search">
                     <input type="text" name="search_word" placeholder="🔍 Search" />
                 </form>
+
+                <div class="sns-icons">
+                    <a class="fab fa-twitter-square fa-3x" href="https://twitter.com/IshiharaSatoumi" target="_blank" rel="noopener noreferrer"></a>
+                    <i class="fab fa-github fa-3x"></i>
+                </div>
             </div>
         </div>
 
-        <div class="pagination">
-            <div class="page-guide">◀︎</div>
-            <div class="page-guide">1</div>
-            <div class="page-guide">︎2</div>
-            <div class="page-guide">3︎</div>
-            <div class="page-guide">4︎</div>
-            <div class="page-guide">5︎</div>
-            <div class="page-guide">▶︎︎</div>
-        </div>
-
         <footer>
-            <a class="fab fa-twitter-square fa-3x" href="https://twitter.com/IshiharaSatoumi" target="_blank" rel="noopener noreferrer"></a>
-            <i class="fab fa-github fa-3x"></i>
+            Copyright ︎Yasuyuki Ekinaga
         </footer>
     </body>
 </html>
