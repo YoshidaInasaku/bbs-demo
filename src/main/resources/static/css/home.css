@@ -11,9 +11,29 @@ a:visited {
     color: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkturquoise;
+}
+
 /** Font Awesome */
 .fa-twitter-square {
     margin-bottom: 25px;
+}
+
+.fa-home {
+    font-weight: bold;
+}
+
+.fa-search {
+    margin: 3px 0 10px 13px;
 }
 
 /** ボディ */
@@ -30,7 +50,7 @@ body {
 
 /** 左サイドバー */
 .left-sidebar {
-    width: 24%;
+    width: 22%;
     margin-left: 15px;
     min-width: 210px;
 }
@@ -43,8 +63,9 @@ body {
 
 .left-sidebar div {
     font-size:22px;
-    margin-bottom: 21px;
+    margin-bottom: 28px;
     margin-left: 12px;
+    font-weight: bold;
 }
 
 /** メインメニューの投稿部分 */
@@ -55,6 +76,7 @@ body {
 
 .center form {
     margin-top: 20px;
+    margin-bottom: 17px;
     display: grid;
     row-gap: 5px;
     justify-content: center;
@@ -64,6 +86,7 @@ body {
     width: 580px;
     height: 75px;
     font-size: 20px;
+    border: solid;
 }
 
 .center form textarea::placeholder {
@@ -79,7 +102,7 @@ body {
 
 /** メインメニューの投稿一覧 */
 .contents {
-    height: 516px;
+    height: 511px;
     overflow-y: auto;
 }
 
@@ -121,34 +144,6 @@ body {
     white-space: pre-wrap;
 }
 
-/** 右サイドバー */
-.right-sidebar {
-    width: 18%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 200px;
-}
-
-.right-sidebar form input {
-    margin-top: 7px;
-    width: 170px;
-    height: 27px;
-}
-
-.right-sidebar form input::placeholder {
-    font-size: 18px;
-}
-
-/** SNSアイコン */
-.sns-icons {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    margin-top: auto;
-    margin-right: 20px;
-}
-
 /** フッター */
 footer {
     display: flex;
@@ -162,11 +157,51 @@ footer {
 }
 
 .page-guide {
-    margin: 50px 20px 20px 10px;
+    margin: 45px 20px 20px 10px;
     font-size: 18px;
 }
 
+/** コピーライト */
 .copyright {
     font-size: 15px;
     align-self: center;
+    margin-top: 5px;
+}
+
+
+/** 右サイドバー */
+.right-sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+.right-sidebar form {
+    margin-top: 5px;
+    border: solid;
+}
+
+.right-sidebar form input {
+    margin-top: 7px;
+    width: 170px;
+    height: 27px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
+
+.right-sidebar form input::placeholder {
+    font-size: 20px;
+}
+
+/** SNSアイコン */
+.sns-icons {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-top: auto;
+    margin-right: 28px;
+    margin-bottom: 10px;
 }
