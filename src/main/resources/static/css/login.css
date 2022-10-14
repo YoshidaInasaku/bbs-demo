@@ -57,7 +57,7 @@ body {
 .main form {
     display: flex;
     flex-direction: column;
-    height: 135px;
+    height: 160px;
     width: 200px;
     justify-content: space-between;
 }
@@ -66,19 +66,21 @@ body {
     width: 185px;
     height: 30px;
     align-self: center;
-    font-size: 18px;
+    font-size: 20px;
+    border: solid;
 }
 
 .main form > button {
     width: 180px;
-    height: 30px;
+    height: 40px;
     align-self: center;
     background-color: green;
     color: white;
+    border: solid;
 }
 
 #register-button {
-    height: 30px;
+    height: 40px;
     width: 180px;
     background-color: midnightblue;
     color: white;

@@ -23,22 +23,18 @@
                     </div>
                 </div>
 
-                <div class="input-item">
-                    <div class="input-error" th:if="${#fields.hasErrors('userId')}" th:errors="${signupForm.userId}"></div>
-                    <input type="text" name="userId" th:value="${signupForm.userId}" placeholder="UserId        (15Characters or less)" />
-                </div>
-                <div class="input-item">
-                    <div class="input-error" th:if="${#fields.hasErrors('userName')}" th:errors="${signupForm.userName}"></div>
-                    <input type="text" name="userName" th:value="${signupForm.userName}" placeholder="UserName  (24Characters or less)" />
-                </div>
-                <div class="input-item">
-                    <div class="input-error" th:if="${#fields.hasErrors('password')}" th:errors="${signupForm.password}"></div>
-                    <input type="password" name="password" th:value="${signupForm.password}" placeholder="Password   (128Characters or less)" />
-                </div>
-                <div class="input-item">
-                    <div class="input-error" th:if="${#fields.hasErrors('email')}" th:errors="${signupForm.email}"></div>
-                    <input type="email" name="email" th:value="${signupForm.email}" placeholder="Email" />
-                </div>
+                <div class="input-error" th:if="${#fields.hasErrors('userId')}" th:errors="${signupForm.userId}"></div>
+                <input class="input-item" type="text" name="userId" th:value="${signupForm.userId}" placeholder="UserId        (15Characters or less)" />
+
+                <div class="input-error" th:if="${#fields.hasErrors('userName')}" th:errors="${signupForm.userName}"></div>
+                <input class="input-item" type="text" name="userName" th:value="${signupForm.userName}" placeholder="UserName  (24Characters or less)" />
+
+                <div class="input-error" th:if="${#fields.hasErrors('password')}" th:errors="${signupForm.password}"></div>
+                <input class="input-item" type="password" name="password" th:value="${signupForm.password}" placeholder="Password   (128Characters or less)" />
+
+                <div class="input-error" th:if="${#fields.hasErrors('email')}" th:errors="${signupForm.email}"></div>
+                <input class="input-item" type="email" name="email" th:value="${signupForm.email}" placeholder="Email" />
+
                 <button type="submit">Create</button>
             </form>
         </div>
