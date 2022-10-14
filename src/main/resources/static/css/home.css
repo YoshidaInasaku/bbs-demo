@@ -28,10 +28,6 @@ a:visited {
     margin-bottom: 25px;
 }
 
-.fa-home {
-    font-weight: bold;
-}
-
 .fa-search {
     margin: 3px 0 10px 13px;
 }
@@ -167,7 +163,6 @@ footer {
     align-self: center;
     margin-top: 5px;
 }
-
 
 /** 右サイドバー */
 .right-sidebar {

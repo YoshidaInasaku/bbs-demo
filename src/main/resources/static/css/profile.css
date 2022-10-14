@@ -11,7 +11,24 @@ a:visited {
     color: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
 
+::-webkit-scrollbar-track {
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkturquoise;
+}
+
+/** Font Awesome */
+.fa-search {
+    margin: 3px 0 10px 13px;
+}
+
+/** ボディ */
 body {
     margin: 0;
     display: flex;
@@ -20,13 +37,14 @@ body {
 }
 
 .home {
-    flex: 1;
     display: flex;
 }
 
+/** 左サイドバー */
 .left-sidebar {
-    width: 24%;
+    width: 22%;
     margin-left: 15px;
+    min-width: 210px;
 }
 
 .left-sidebar h1 {
@@ -37,15 +55,17 @@ body {
 
 .left-sidebar div {
     font-size:22px;
-    margin-bottom: 21px;
+    margin-bottom: 28px;
     margin-left: 12px;
+    font-weight: bold;
 }
 
-/** メインを記載する */
+/** メインメニューの投稿部分 */
 .center {
     width: 58%;
     display: flex;
     flex-direction: column;
+    min-width: 580px;
 }
 
 .center .user-profile {
@@ -118,22 +138,53 @@ body {
     white-space: pre-wrap;
 }
 
-.right-sidebar {
-    width: 18%;
+/** フッター */
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+/** ページネーション */
+.pagination {
     display: flex;
     justify-content: center;
+}
+
+.page-guide {
+    margin: 45px 20px 20px 10px;
+    font-size: 18px;
+}
+
+/** コピーライト */
+.copyright {
+    font-size: 15px;
+    align-self: center;
+    margin-top: 5px;
+}
+
+/** 右サイドバー */
+.right-sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+.right-sidebar form {
+    margin-top: 5px;
+    border: solid;
 }
 
 .right-sidebar form input {
     margin-top: 7px;
     width: 170px;
     height: 27px;
+    border: none;
+    outline: none;
+    font-size: 20px;
 }
 
 .right-sidebar form input::placeholder {
-    font-size: 18px;
-}
-
-footer {
-    background-color: grey;
+    font-size: 20px;
 }

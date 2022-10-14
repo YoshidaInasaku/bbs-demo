@@ -4,15 +4,16 @@
         <meta charset="UTF-8">
         <title>Profile / BBSDemo</title>
         <link rel="stylesheet" th:href="@{/css/profile.css}">
+        <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.min.css}">
     </head>
     <body>
         <div class="home">
             <div class=left-sidebar>
                 <h1><a th:href="@{/home}">BBSdemo</a></h1>
-                <div><a th:href="@{/home}">🏠 Home</a></div>
-                <div><a th:href="@{/profile}">👶 Profile</a></div>
-                <div><a th:href="@{/logout}">🛑 Logout</a></div>
-                <div sec:authorize="hasRole('ADMIN')">🌌 Admin Console</div>
+                <div><a th:href="@{/home}"><i class="fas fa-home fa-2x fa-fw" ></i> Home</a></div>
+                <div><a th:href="@{/profile}"><i class="fas fa-user fa-2x fa-fw" ></i> Profile</a></div>
+                <div><a th:href="@{/logout}"><i class="fas fa-sign-out-alt fa-2x fa-fw" ></i> Logout</a></div>
+                <div sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin}"><i class="fad fa-tools fa-lg"></i> Admin Console</a></div>
             </div>
 
             <div class="center">
@@ -33,17 +34,28 @@
                     </div>
                     <div class="content-text" th:text="${content.textContent}">こんにちは</div>
                 </div>
+
+                <footer>
+                    <div class="pagination">
+                        <div class="page-guide">◀︎</div>
+                        <div class="page-guide">1</div>
+                        <div class="page-guide">︎2</div>
+                        <div class="page-guide">3︎</div>
+                        <div class="page-guide">4︎</div>
+                        <div class="page-guide">5︎</div>
+                        <div class="page-guide">▶︎︎</div>
+                    </div>
+
+                    <div class="copyright">Copyright ︎Yasuyuki Ekinaga</div>
+                </footer>
             </div>
 
             <div class="right-sidebar">
                 <form method="post" action="/search">
-                    <input type="text" name="search_word" placeholder="🔍 Search" />
+                    <i class="fas fa-search fa-lg"></i>
+                    <input type="text" name="search_word" placeholder=" Search" />
                 </form>
             </div>
         </div>
-
-        <footer>
-            footer
-        </footer>
     </body>
 </html>
