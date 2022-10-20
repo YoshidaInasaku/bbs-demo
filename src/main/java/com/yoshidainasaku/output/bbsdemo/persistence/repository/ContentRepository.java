@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -25,6 +26,13 @@ public class ContentRepository {
             ON
                 users.user_id = contents.user_id
             ORDER BY contents.id DESC
+            LIMIT :limit
+            OFFSET :offset
+            """;
+
+    private static final String SQL_COUNT_ALL_CONTENTS = """
+            SELECT COUNT(contents.id)
+            FROM contents
             """;
 
     private static final String SQL_FIND_SPECIFIC_USER_CONTENTS = """
@@ -64,9 +72,22 @@ public class ContentRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    public List<Content> findAll() {
-        List<Content> contentList = namedParameterJdbcTemplate.query(SQL_FIND_ALL_CONTENTS, new DataClassRowMapper<>(Content.class));
+    public List<Content> findAll(HashMap<String , String> paginationInfo) {
+        int page = Integer.parseInt(paginationInfo.get("page")) - 1;
+        int limit = Integer.parseInt(paginationInfo.get("limit"));
+
+        MapSqlParameterSource param = new MapSqlParameterSource()
+                .addValue("limit", limit)
+                .addValue("offset", page * limit);
+
+        List<Content> contentList = namedParameterJdbcTemplate.query(SQL_FIND_ALL_CONTENTS, param, new DataClassRowMapper<>(Content.class));
         return contentList;
+    }
+
+    public int countAllContents() {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        Integer result = namedParameterJdbcTemplate.queryForObject(SQL_COUNT_ALL_CONTENTS, param, Integer.class);
+        return result;
     }
 
     public void add(String textContent, String updatedAt, String userId) {

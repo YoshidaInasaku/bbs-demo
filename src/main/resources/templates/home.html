@@ -37,13 +37,23 @@
 
                 <footer>
                     <div class="pagination">
-                        <div class="page-guide">◀︎</div>
-                        <div class="page-guide">1</div>
+                        <div class="page-guide">
+                            <a th:href="@{/home?currentPage=1}">◀︎◀</a>
+                        </div>
+                        <div class="page-guide">
+                            <a th:href="@{'/home?page=' + ${currentPage - 1}}">◀︎</a>
+                        </div>
+                        <div class="page-guide" >1</div>
                         <div class="page-guide">︎2</div>
                         <div class="page-guide">3︎</div>
                         <div class="page-guide">4︎</div>
                         <div class="page-guide">5︎</div>
-                        <div class="page-guide">▶︎︎</div>
+                        <div class="page-guide">▶
+                            <a th:href="@{'/home?page=' + ${currentPage + 1}}">▶︎</a>
+                        </div>
+                        <div class="page-guide">
+                            <a th:href="@{'/home?page=' + ${totalPage}}">▶︎▶︎</a>
+                        </div>
                     </div>
 
                     <div class="copyright">Copyright ︎Yasuyuki Ekinaga</div>

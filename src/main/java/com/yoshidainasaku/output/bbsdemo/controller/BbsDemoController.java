@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,9 @@ public class BbsDemoController {
         this.contentRepository = contentRepository;
         this.loginUserRepository = loginUserRepository;
     }
+
+    private final String MAX_DISPLAY_RESULT = "5";
+    private final String DISPLAY_PAGE_SIZE = "5";
 
     @GetMapping("/login")
     public String login() {
@@ -90,15 +94,52 @@ public class BbsDemoController {
     }
 
     @GetMapping("/home")
-    public String home(@AuthenticationPrincipal LoginUserDetails loginUserDetails,
-                       Model model) {
-        String userId = loginUserDetails.getUsername();
-        model.addAttribute("userId", userId);
+    public String home(Model model, @RequestParam HashMap<String, String> params) {
+        String currentPage = params.get("page");
+        if (currentPage == null) {
+            currentPage = "1";
+        }
+        System.out.println("パラメータの値: " + params);
+        System.out.println("現在のページ: " + currentPage);
 
-        List<Content> contentList = contentRepository.findAll();
+        HashMap<String, String> paginationInfo = new HashMap<>();  // {現在のページ, 1ページに最大で表示できるコンテンツ量}
+        paginationInfo.put("page", currentPage);
+        paginationInfo.put("limit", MAX_DISPLAY_RESULT);
+
+        int totalContentsCount = 0;
+        List<Content> contentList = null;
+
+        try {
+            totalContentsCount = contentRepository.countAllContents();
+            contentList = contentRepository.findAll(paginationInfo);
+        } catch (Exception e) {
+            System.out.println("データ取得に関してエラー: ページング処理に異常あり");
+            System.out.println("総データ数: " + totalContentsCount);
+            System.out.println("データ: " + contentList);
+            System.out.println("DAOに渡す引数paginationInfo: " + paginationInfo);
+        }
+
+        // Todo: ページング処理を記述
+        int totalPage = totalContentsCount % Integer.parseInt(MAX_DISPLAY_RESULT) > 0 ?
+                totalContentsCount / Integer.parseInt(MAX_DISPLAY_RESULT) + 1 :
+                totalContentsCount / Integer.parseInt(MAX_DISPLAY_RESULT);
+        int startPage = Integer.parseInt(currentPage) % Integer.parseInt(DISPLAY_PAGE_SIZE) == 0 ?
+                (Integer.parseInt(currentPage) / Integer.parseInt(DISPLAY_PAGE_SIZE) - 1) * Integer.parseInt(DISPLAY_PAGE_SIZE) + 1 :
+                (Integer.parseInt(currentPage) / Integer.parseInt(DISPLAY_PAGE_SIZE)) * Integer.parseInt(DISPLAY_PAGE_SIZE) + 1;
+        int endPage = Integer.parseInt(currentPage) % Integer.parseInt(DISPLAY_PAGE_SIZE) == 0 ?
+                (Integer.parseInt(currentPage) / Integer.parseInt(DISPLAY_PAGE_SIZE) - 1) * Integer.parseInt(DISPLAY_PAGE_SIZE) + Integer.parseInt(DISPLAY_PAGE_SIZE) :
+                (Integer.parseInt(currentPage) / Integer.parseInt(DISPLAY_PAGE_SIZE)) * Integer.parseInt(DISPLAY_PAGE_SIZE) + Integer.parseInt(DISPLAY_PAGE_SIZE);
+
+        // コンテンツ表示の際、コンテンツが取得できなかったらどうする問題を考える（案：データ処理のcatch句で「error画面」を作成してもいいよね
         model.addAttribute("contentList", contentList);
+        model.addAttribute("totalContentsCount", totalContentsCount);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         return "home";
     }
+
     @PostMapping("/add")
     public String add(@RequestParam("text_content") String textContent,
                       Authentication authentication) {
